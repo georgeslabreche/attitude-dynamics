@@ -5,11 +5,12 @@ clc
 %%%%%%%%%%%%%%%%%%%%%%
 %        INIT        %
 %%%%%%%%%%%%%%%%%%%%%%
+plot_visibility = 'on';
+
 % If an image export directory doesn't exist, create it.
 if ~exist('exports', 'dir')
     mkdir('exports');
 end
-
 
 %%%%%%%%%%%%%%%%%%%%%%
 % I. Satellite model %
@@ -32,7 +33,8 @@ timesample = (1:1:100);
 % Build the Step and Impulse subplot figure.
 fig_si = figure;
 set(fig_si, 'NumberTitle', 'on', ...
-    'Name', 'Step and Impulse Plots');
+    'Name', 'Step and Impulse Plots', ...
+    'Visible', plot_visibility);
 
 % Step plot.
 subplot(2,1,1);
@@ -44,6 +46,6 @@ subplot(2,1,2);
 impulseplot(H, timesample)
 title ('Impulse');
 
-
+% Export the plot as a png file.
 print('exports/fig-step-and-impulse', '-dpng');
 
