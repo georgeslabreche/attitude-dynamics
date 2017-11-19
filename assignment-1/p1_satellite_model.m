@@ -16,19 +16,19 @@ end
 % I. Satellite model %
 %%%%%%%%%%%%%%%%%%%%%%
 
-% a) Plot the responses for t=0 to 100 s.
-
-% b) Set up the transfer function of the system.
-
 % Specify a transfer function model using a rational function in the
 % Laplace variable, s.
 s = tf('s');
 
-% Define the transfer function.
-H = 1/s^2;
-
-% Define time sample for t=0 to 100s.
+% Define time sample for our plots from t=0 to 100s.
 timesample = (1:1:100);
+
+% a) Plot the responses for t=0 to 100 s.
+
+% b) Set up the transfer function of the system.
+
+% Define the transfer function.
+H = 2/s^2;
 
 % Build the Step and Impulse subplot figure.
 fig_si = figure;
