@@ -147,11 +147,9 @@ stepplot(H, timesample);
 % Export the plot as a png file.
 print('exports/fig-predef-k', '-dpng');
 
-
 %%%%
 % e) Transient Analysis
 %%%%
-
 K=1;
 for zeta = [0.2, 0.5, 0.7, 1, 2, 5]
     % Kd = I * 2 * zeta * omega_n with I=1 & omega_n=1 thus Kd = 2 * zeta.
@@ -166,7 +164,7 @@ for zeta = [0.2, 0.5, 0.7, 1, 2, 5]
     omega_d = omega_n * sqrt(1-zeta^2); % Damped natural frequency:
     beta = acos(zeta);
 
-    % Rise Time
+    % The Rise Time
     Tr = (pi - beta) / omega_d;
 
     % Peak Time: Time needed for the response to reach the first peak of the
@@ -183,8 +181,6 @@ for zeta = [0.2, 0.5, 0.7, 1, 2, 5]
     % Display results.
     results = [zeta, Kd, Td, Tr, Tp, Mp, Ts]
 end
-
-
 
 
 

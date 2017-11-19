@@ -1,2 +1,4 @@
 *.m~
-exports
+*.r2012a
+*.autosave
+
