@@ -4,10 +4,13 @@
 % Problem II: PD Controller
 %
 % Goal: On successful completion of the assignment the student shall
-%   - be able to use Control system toolbox in MATLAB/Simulink for analysis of simple control systems.
+%   - be able to use Control system toolbox in MATLAB/Simulink for analysis
+%     of simple control systems.
 %   - be able to set up simple transfer functions using Laplace-transforms.
-%   - be familiar with attitude control with an ideal actuator, ideal sensors and a simple controller.
-%   - know some common control system performance metrics (transient analysis).
+%   - be familiar with attitude control with an ideal actuator, ideal
+%     sensors and a simple controller.
+%   - know some common control system performance metrics
+%     (transient analysis).
 %   - know the role of the three parts of a PID-controller .
 %
 % Version: 1.0
@@ -91,9 +94,6 @@ print('exports/fig-test-k', '-dpng');
 % c) Use damping of 0.2, 0.5, 0.7, 1, 2 and 5.
 %%%%
 
-% For Kd, this means values of 0.4, 1.0, 1.4, 2, 4, and 10 respectively.
-% Calculations done by hand with I=1 and Wn=1 thus Kd = 2 * zeta.
-
 % Define the figure.
 fig_predef_vals_kd = figure;
 set(fig_predef_vals_kd, 'NumberTitle', 'on', ...
@@ -101,8 +101,21 @@ set(fig_predef_vals_kd, 'NumberTitle', 'on', ...
     'Visible', plot_visibility);
 
 % Plot different values of the parameter Kd for K=1. 
-K=1;
-for Kd = [0.4, 1.0, 1.4, 2, 4, 10]
+K = 1;
+
+% Normalize I to unity.
+I = 1;
+
+% Natural frequence
+omega_n = 1;
+
+% For predefined damping values zeta.
+for zeta = [0.2, 0.5, 0.7, 1, 2, 5]
+    
+    % Calculate Kd.
+    % I=1 and omega_n=1, euivalent to Kd = 2 * zeta.
+    Kd = I * 2 * zeta * omega_n;
+    
     % Define the transfer function.
     H = (K/I) / (s^2 + (Kd*s)/I + K / 1);
     
@@ -133,5 +146,45 @@ stepplot(H, timesample);
 
 % Export the plot as a png file.
 print('exports/fig-predef-k', '-dpng');
+
+
+%%%%
+% e) Transient Analysis
+%%%%
+
+K=1;
+for zeta = [0.2, 0.5, 0.7, 1, 2, 5]
+    % Kd = I * 2 * zeta * omega_n with I=1 & omega_n=1 thus Kd = 2 * zeta.
+    Kd = 2 * zeta;  
+    
+    % Delay Time: Time needed for the response to reach 50% of its final value
+    % the first time.
+    Td = (1 + 0.7 * zeta) / omega_n;
+
+    % Rise Time: Time needed for the response to rise from (10% to 90%) or 
+    % (0% to 100%) or (5% to 95%) of its final value.
+    omega_d = omega_n * sqrt(1-zeta^2); % Damped natural frequency:
+    beta = acos(zeta);
+
+    % Rise Time
+    Tr = (pi - beta) / omega_d;
+
+    % Peak Time: Time needed for the response to reach the first peak of the
+    % overshoot.
+    Tp = pi / (omega_n * sqrt(1-zeta^2));
+
+    % Maximum Overshoot: Occurs at the peak of Tp.
+    Mp = exp((-pi*zeta) / sqrt(1-zeta^2));
+
+    % Settling Time: Time needed for the response curve to reach and stay 
+    % within 2% of the final value.
+    Ts = 4 / (zeta * omega_n);
+    
+    % Display results.
+    results = [zeta, Kd, Td, Tr, Tp, Mp, Ts]
+end
+
+
+
 
 
