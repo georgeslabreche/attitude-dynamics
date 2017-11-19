@@ -11,8 +11,7 @@
 %     sensors and a simple controller.
 %   - know some common control system performance metrics
 %     (transient analysis).
-%   - know the role of the three parts of a PID-controller .
-%
+%   - know the role of the three parts of a PID-controller
 %
 % Version: 1.0
 %
