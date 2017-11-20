@@ -51,7 +51,7 @@ timesample = (0:0.25:20);
 % Define the figure.
 fig_test_kd = figure;
 set(fig_test_kd, 'NumberTitle', 'on', ...
-    'Name', 'Different Values for Parameter Kd', ...
+    'Name', 'Step Reponse with Test Values for Kd', ...
     'Visible', plot_visibility);
 
 % Test different settings of the parameter Kd for K=1.
@@ -65,6 +65,9 @@ for Kd = 0.5:0.5:3
     hold off
 end
 
+% Legend
+legend({'Kd=0.5','Kd=1.0','Kd=1.5','Kd=2.0','Kd=2.5','Kd=3.0'});
+
 % Export the plot as a png file.
 print('exports/fig-test-kd', '-dpng');
 
@@ -72,7 +75,7 @@ print('exports/fig-test-kd', '-dpng');
 % Define the figure.
 fig_test_k = figure;
 set(fig_test_k, 'NumberTitle', 'on', ...
-    'Name', 'Different Values for Parameter K', ...
+    'Name', 'Step Response with Test Values for K', ...
     'Visible', plot_visibility);
 
 % Test different settings of the parameter K for Kd=1. 
@@ -87,6 +90,9 @@ for K = 0.5:0.5:3
     hold off
 end
 
+% Legend
+legend({'K=0.5','K=1.0','K=1.5','K=2.0','K=2.5','K=3.0'});
+
 % Export the plot as a png file.
 print('exports/fig-test-k', '-dpng');
 
@@ -97,7 +103,7 @@ print('exports/fig-test-k', '-dpng');
 % Define the figure.
 fig_predef_vals_kd = figure;
 set(fig_predef_vals_kd, 'NumberTitle', 'on', ...
-    'Name', 'Predefined Values for Parameter Kd', ...
+    'Name', 'Step Response with Predefined Values for Kd', ...
     'Visible', plot_visibility);
 
 % Plot different values of the parameter Kd for K=1. 
@@ -125,6 +131,9 @@ for zeta = [0.2, 0.5, 0.7, 1, 2, 5]
     hold off
 end
 
+% Legend
+legend({'Kd=0.4','Kd=1.0','Kd=1.4','Kd=2.0','Kd=4.0','Kd=10'});
+
 % Export the plot as a png file.
 print('exports/fig-predef-kd', '-dpng');
 
@@ -133,7 +142,7 @@ print('exports/fig-predef-kd', '-dpng');
 % Define the figure.
 fig_predef_vals_k = figure;
 set(fig_predef_vals_k, 'NumberTitle', 'on', ...
-    'Name', 'Predefined Values for Parameter K', ...
+    'Name', 'Step Response with Predefined Values for K', ...
     'Visible', plot_visibility);
 
 % K will always be 1 and we set Kd to 1.
@@ -143,6 +152,10 @@ Kd=1;
 % Define the transfer function.
 H = (K/I) / (s^2 + (Kd*s)/I + K / 1);
 stepplot(H, timesample);
+
+% Legend
+legend({'K=1'});
+
 
 % Export the plot as a png file.
 print('exports/fig-predef-k', '-dpng');
