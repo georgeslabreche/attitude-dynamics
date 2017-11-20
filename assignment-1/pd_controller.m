@@ -57,7 +57,7 @@ set(fig_test_kd, 'NumberTitle', 'on', ...
 % Test different settings of the parameter Kd for K=1.
 for Kd = 0.5:0.5:3 
     % Define the transfer function.
-    H = (K/I) / (s^2 + (Kd*s)/I + K / 1);
+    H = (K/I) / (s^2 + (Kd*s)/I + K / I);
     
     % Plot
     hold on
@@ -82,7 +82,7 @@ set(fig_test_k, 'NumberTitle', 'on', ...
 Kd = 1;
 for K = 0.5:0.5:3
     % Define the transfer function.
-    H = (K/I) / (s^2 + (Kd*s)/I + K / 1);
+    H = (K/I) / (s^2 + (Kd*s)/I + K / I);
     
     % Plot
     hold on
@@ -123,7 +123,7 @@ for zeta = [0.2, 0.5, 0.7, 1, 2, 5]
     Kd = I * 2 * zeta * omega_n;
     
     % Define the transfer function.
-    H = (K/I) / (s^2 + (Kd*s)/I + K / 1);
+    H = (K/I) / (s^2 + (Kd*s)/I + K / I);
     
     % Plot
     hold on
@@ -150,7 +150,7 @@ K=1;
 Kd=1;
 
 % Define the transfer function.
-H = (K/I) / (s^2 + (Kd*s)/I + K / 1);
+H = (K/I) / (s^2 + (Kd*s)/I + K / I);
 stepplot(H, timesample);
 
 % Legend

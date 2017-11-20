@@ -43,7 +43,7 @@ timesample = (0:1:100);
 % b) Set up the transfer function of the system.
 
 % Define the transfer function.
-H = 2/s^2;
+H = 1/s^2;
 
 % Build the Step and Impulse subplot figure.
 fig_si = figure;
