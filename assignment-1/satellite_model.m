@@ -38,12 +38,34 @@ s = tf('s');
 % Define time sample for our plots from t=0 to 100s.
 timesample = (0:1:100);
 
-% a) Plot the responses for t=0 to 100 s.
-
-% b) Set up the transfer function of the system.
-
 % Define the transfer function.
 H = 1/s^2;
+
+% a) Plot the responses for t=0 to 100s with functions calculated by hand.
+I = 1;
+impulse_h = timesample / I;
+step_h = sqrt(timesample / I);
+
+figure_si_hand = figure;
+set(figure_si_hand, 'NumberTitle', 'on', ...
+    'Name', 'Step and Impulse Plots by Hand Calculation', ...
+    'Visible', plot_visibility);
+
+subplot (2, 1, 1)
+plot(step_h, timesample, 'r')
+title('Step by Hand Calculation');
+xlabel('Time (seconds)') % x-axis label
+ylabel('Amplitude') % y-axis label
+subplot(2, 1, 2)
+plot(impulse_h, timesample, 'b')
+title('Impulse by Hand Calculation');
+xlabel('Time (seconds)') % x-axis label
+ylabel('Amplitude') % y-axis label
+
+% Export the plot as a png file.
+print('exports/fig-step-and-impulse-by-hand', '-dpng');
+
+% b) Use stepplot and impulseplot functions.
 
 % Build the Step and Impulse subplot figure.
 fig_si = figure;
@@ -52,15 +74,14 @@ set(fig_si, 'NumberTitle', 'on', ...
     'Visible', plot_visibility);
 
 % Step plot.
-subplot(2,1,1);
-stepplot(H, timesample)
+subplot(2, 1, 1);
+stepplot(H, timesample, 'r')
 title ('Step');
 
 % Impulse plot.
-subplot(2,1,2);
-impulseplot(H, timesample)
+subplot(2, 1, 2);
+impulseplot(H, timesample, 'b')
 title ('Impulse');
 
 % Export the plot as a png file.
 print('exports/fig-step-and-impulse', '-dpng');
-

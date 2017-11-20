@@ -206,3 +206,19 @@ for zeta = [0.2, 0.5, 0.7, 1, 2, 5]
     stepinfo(H)
 end
 
+%%%
+% f) Use the MATLAB command pole to study the roots of the nominator of
+% the transfer function for the different parameter setting. 
+%%%
+for Kd= [0, 0.4, 1, 2, 4, 10]
+    H=tf((K/I), [1, (Kd/I), (K/I)]);
+    t=(0:0.5:20);
+
+    figure;
+    subplot (2, 1, 1);
+    stepplot(H, t, 'r');
+    subplot(2, 1, 2);
+    impulseplot(H, t, 'b');
+    
+    p = pole(H) % command pole to study the roots of the nominator of tf.
+end
