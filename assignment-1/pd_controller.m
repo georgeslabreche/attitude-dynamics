@@ -116,8 +116,7 @@ I = 1;
 omega_n = 1;
 
 % For predefined damping values zeta.
-for zeta = [0.2, 0.5, 0.7, 1, 2, 5]
-    
+for zeta = [0.2, 0.5, 0.7, 1, 2, 5]  
     % Calculate Kd.
     % I=1 and omega_n=1, euivalent to Kd = 2 * zeta.
     Kd = I * 2 * zeta * omega_n;
@@ -155,7 +154,6 @@ stepplot(H, timesample);
 
 % Legend
 legend({'K=1'});
-
 
 % Export the plot as a png file.
 print('exports/fig-predef-k', '-dpng');
@@ -195,10 +193,9 @@ for zeta = [0.2, 0.5, 0.7, 1, 2, 5]
     results = [zeta, Kd, Td, Tr, Tp, Mp, Ts]
 end
 
-% Caculuate the same values using MATLAB's stepinfo function.
+% Caculate the same values using MATLAB's stepinfo function.
 % For predefined damping values zeta.
 for zeta = [0.2, 0.5, 0.7, 1, 2, 5]
-    
     % Calculate Kd.
     % I=1 and omega_n=1, euivalent to Kd = 2 * zeta.
     Kd = I * 2 * zeta * omega_n;
