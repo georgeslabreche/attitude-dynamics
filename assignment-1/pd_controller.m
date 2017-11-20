@@ -185,7 +185,7 @@ for zeta = [0.2, 0.5, 0.7, 1, 2, 5]
     Tp = pi / (omega_n * sqrt(1-zeta^2));
 
     % Maximum Overshoot: Occurs at the peak of Tp.
-    Mp = exp((-pi*zeta) / sqrt(1-zeta^2));
+    Mp = exp((-pi*zeta) / sqrt(1-zeta^2)) * 100;
 
     % Settling Time: Time needed for the response curve to reach and stay 
     % within 2% of the final value.
@@ -195,6 +195,17 @@ for zeta = [0.2, 0.5, 0.7, 1, 2, 5]
     results = [zeta, Kd, Td, Tr, Tp, Mp, Ts]
 end
 
+% Caculuate the same values using MATLAB's stepinfo function.
+% For predefined damping values zeta.
+for zeta = [0.2, 0.5, 0.7, 1, 2, 5]
+    
+    % Calculate Kd.
+    % I=1 and omega_n=1, euivalent to Kd = 2 * zeta.
+    Kd = I * 2 * zeta * omega_n;
+    
+    % Define the transfer function.
+    H = (K/I) / (s^2 + (Kd*s)/I + K / I);
 
-
+    stepinfo(H)
+end
 
